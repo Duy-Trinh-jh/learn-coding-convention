@@ -273,7 +273,6 @@ function buildCarousel () {
         cardWidth = container.offsetWidth - MARGIN_LEFT;
         this.setupCarousel();
       });
-      console.log("addddddddd")
     }
   }
 } 
