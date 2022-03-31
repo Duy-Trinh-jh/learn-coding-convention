@@ -2,7 +2,7 @@ const DESKTOP_SCREEN_WIDTH = 1024;
 const BACKGROUND_COLOR = "#140327";
 
 const fillBgColorHeader = () => {
-  if(window.matchMedia(`(min-width: ${DESKTOP_SCREEN_WIDTH}px)`).matches) {
+  if (window.matchMedia(`(min-width: ${DESKTOP_SCREEN_WIDTH}px)`).matches) {
     if (window.scrollY >= 100) {
       header.style.backgroundColor = BACKGROUND_COLOR;
     } else {
@@ -56,6 +56,13 @@ const carouselArray = [
       imgHeader: "assets/images/carousel-1/image-2.jpg",
       HeartCount: 382,
       title: "DECAYED",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      commentCount: 374,
+    },
+    {
+      imgHeader: "assets/images/carousel-1/image-3.jpg",
+      HeartCount: 382,
+      title: "BLISS TEXTURE",
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       commentCount: 374,
     },
@@ -134,11 +141,12 @@ const carouselArray = [
   ],
 ];
 
-const MARGIN_LEFT = 75;
+const MARGIN_LEFT_MOBILE = 75;
+const MARGIN_LEFT_DESKTOP = 60;
 const NEXT_BUTTON_WIDTH = 150;
 const MAX_CARD_WIDTH = 320;
 const CARD_PADDING = 24;
-const DISTANCE_OF_MOUSE_MOVE = 20;
+const DISTANCE_OF_FINGER_MOVE = 20;
 
 function buildCarousel () {
   const listCardContainer = document.querySelectorAll(".list-card");
@@ -146,7 +154,7 @@ function buildCarousel () {
   const carouselContainer = document.querySelectorAll(".carousel-section");
   const numOfCards = carouselArray.map(item => item.length);
   let listCardWidth = [];
-  let cardWidth = container.offsetWidth - MARGIN_LEFT;
+  let cardWidth = container.offsetWidth - MARGIN_LEFT_MOBILE;
   let startX = 0, endX = 0;
   
   const addCardToContainer = (array, index) => {
@@ -176,31 +184,42 @@ function buildCarousel () {
         </div>
       `;
   
-      listCardContainer[index].innerHTML = listCardContainer[index].innerHTML + html;
+      listCardContainer[index].innerHTML = 
+        listCardContainer[index].innerHTML + html;
     });
+  }
+
+  const calcNextButtonWidth = (carouselIndex) => {
+    let widthNextButton = NEXT_BUTTON_WIDTH;
+    const nextBtn = carouselContainer[carouselIndex].querySelector(".next");
+    if (
+      window.getComputedStyle(nextBtn).display === "none"
+    ) {
+      widthNextButton = 0;
+    }
+    return widthNextButton;
   }
   
   const calcNewMarginLeftValue = (carouselIndex, isMoveLeft = false) => {
-    let temp = 1;
-    if(isMoveLeft) temp = -1;
     const currentMarginLeft = 
     +listCardContainer[carouselIndex].style.marginLeft.replace("px", "");
+    let temp = 1;
+    if (isMoveLeft) temp = -1;
     let newMarginLeft = currentMarginLeft + (CARD_PADDING + cardWidth) * temp;
-    if(isMoveLeft) {
+    
+    if (isMoveLeft) {
       const marginLeftInit = calcMarginLeftInit(carouselIndex);
-      if(newMarginLeft < marginLeftInit) newMarginLeft = marginLeftInit;
-    } else {
-      if(newMarginLeft > 0) newMarginLeft = 0;
+      if (newMarginLeft < marginLeftInit) return marginLeftInit;
     }
+      
+    if (newMarginLeft > 0) return 0;
+
     return newMarginLeft;
   }
   
   const calcMarginLeftInit = (carouselIndex) => {
-    let widthNextButton = NEXT_BUTTON_WIDTH;
-    if(window.getComputedStyle(document.querySelector(".next")).display === "none") {
-      widthNextButton = 0;
-    }
-    return container.offsetWidth - listCardWidth[carouselIndex] - widthNextButton;
+    let widthNextBtn = calcNextButtonWidth(carouselIndex);
+    return container.offsetWidth - listCardWidth[carouselIndex] - widthNextBtn;
   }
   
   return {
@@ -208,7 +227,7 @@ function buildCarousel () {
       carouselArray.forEach((array, index) => addCardToContainer(array, index));
     },
     setupCarousel: function() {
-      if(cardWidth > MAX_CARD_WIDTH) cardWidth = MAX_CARD_WIDTH;
+      if (cardWidth > MAX_CARD_WIDTH) cardWidth = MAX_CARD_WIDTH;
     
       const listCard = document.querySelectorAll(".card");
       listCard.forEach(element => (element.style.width = cardWidth + "px"));
@@ -217,14 +236,15 @@ function buildCarousel () {
         (item, index) => (CARD_PADDING + cardWidth) * numOfCards[index]
       );
     
-      carouselContainer.forEach(element => {
+      carouselContainer.forEach((container, index) => {
         let display = "none";
         if (
+          listCardWidth[index] > container.offsetWidth &&
           window.matchMedia(`(min-width: ${DESKTOP_SCREEN_WIDTH}px)`).matches
         ) {
           display = "block";
         }
-        Array.from(element.getElementsByTagName("a"))
+        Array.from(container.querySelectorAll("a.control"))
           .forEach(ele => ele.style.display = display);
       })
     
@@ -232,15 +252,10 @@ function buildCarousel () {
         item.style.width = listCardWidth[index] + "px";
       })
     
-      let widthNextButton = NEXT_BUTTON_WIDTH;
-      if (
-        window.getComputedStyle(document.querySelector(".next")).display === "none"
-      ) {
-        widthNextButton = 0;
-      }
-      const marginLeftCarousels = listCardWidth.map(item => {
-        let marginLeftValue = container.offsetWidth - item - widthNextButton;
-        if (marginLeftValue > 0) marginLeftValue = 60;
+      const marginLeftCarousels = listCardWidth.map((item, index) => {
+        let marginLeftValue = 
+          container.offsetWidth - item - calcNextButtonWidth(index);
+        if (marginLeftValue > 0) return MARGIN_LEFT_DESKTOP;
         return marginLeftValue;
       });
     
@@ -248,34 +263,31 @@ function buildCarousel () {
         item.style.marginLeft = marginLeftCarousels[index] + "px";
       })
     },
-    moveRight: function(carouselIndex) {
-      let newMarginLeft = calcNewMarginLeftValue(carouselIndex);
-      listCardContainer[carouselIndex].style.marginLeft = newMarginLeft + "px";
-    },
-    moveLeft: function(carouselIndex) {
-      let newMarginLeft = calcNewMarginLeftValue(carouselIndex, true);
+    moveCard: function(carouselIndex, isMoveLeft = false) {
+      let newMarginLeft = calcNewMarginLeftValue(carouselIndex, isMoveLeft);
       listCardContainer[carouselIndex].style.marginLeft = newMarginLeft + "px";
     },
     handleTouchEvent: function() {
-      listCardContainer.forEach(item => {
+      listCardContainer.forEach((item, index) => {
         item.addEventListener('touchstart', (event) => {
           startX = event.changedTouches[0].clientX;
         });
         item.addEventListener('touchend', (event) => {
           endX = event.changedTouches[0].clientX;
-          if(endX - startX > DISTANCE_OF_MOUSE_MOVE) moveRight(0);
-          else moveLeft(0);
+          if (endX - startX > DISTANCE_OF_FINGER_MOVE) this.moveCard(index);
+          else this.moveCard(index, true);
         })
       })
     },
     handleResizeEvent: function() {
       window.addEventListener("resize", () => {
-        cardWidth = container.offsetWidth - MARGIN_LEFT;
+        cardWidth = container.offsetWidth - MARGIN_LEFT_MOBILE;
         this.setupCarousel();
       });
     }
   }
 } 
+
 const carousel = buildCarousel();
 carousel.createCarousel();
 carousel.setupCarousel();
@@ -284,5 +296,5 @@ carousel.handleTouchEvent();
 //handle resize event for carousel
 carousel.handleResizeEvent();
 //handle control carousel
-const moveLeft = (carouselIndex) => carousel.moveLeft(carouselIndex);
-const moveRight = (carouselIndex) => carousel.moveRight(carouselIndex);
+const moveLeft = (carouselIndex) => carousel.moveCard(carouselIndex, true);
+const moveRight = (carouselIndex) => carousel.moveCard(carouselIndex);
