@@ -47,4 +47,5 @@ Having code smells does not certainly mean that the software won’t work, it wo
 - Rename variable to make reader can understand it
 - Create global const value and move it to the top. It helps the code becomes more understandable and it could easy to change after
 - Remove duplicate code by refactoring logic code of handle control carousel
-- Add some comment describe the purpose of function 
+- Add some comment describe the purpose of function
+- Using closure to wrap carousel feature 
