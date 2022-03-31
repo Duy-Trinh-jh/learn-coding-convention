@@ -42,3 +42,9 @@ number(); // 2
 ## How the smell code could affect the programs
 Having code smells does not certainly mean that the software won’t work, it would still give an output, but it may slow down processing, increased risk of failure and errors while making the program vulnerable to bugs in the future.
 ## Exercise: Final Project Frontend Basic
+
+### Refactor Note
+- Rename variable to make reader can understand it
+- Create global const value and move it to the top. It helps the code becomes more understandable and it could easy to change after
+- Remove duplicate code by refactoring logic code of handle control carousel
+- Add some comment describe the purpose of function 
