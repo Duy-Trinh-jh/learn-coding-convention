@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Final Project Frontend Basic</title>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="navbar-menu">
+        <div id="navbar-toggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <a href="#about"><li>ABOUT</li></a>
+            <a href="#products"><li>PRODUCTS</li></a>
+            <a href="#projects"><li>PROJECTS</li></a>
+            <a href="#contact"><li>CONTACT</li></a>
+            <a href="mailto:duy.trinh@journeyh.io" class="hide-desktop"><li>SEND MAIL TO US!</li></a>
+          </ul>
+        </div> 
+      </div>
+      <div class="email tooltip">
+        <a href="mailto:duy.trinh@journeyh.io">
+          <img src="assets/images/email-icon.jpg" alt="email" width="30" height="20">
+        </a>
+        <span class="tooltip-text">Send mail to us!</span>
+      </div>
+    </nav>
+  </header>
+  <section class="hero-section">
+    <div class="left-side">
+      <div class="arrow down"></div>
+      <div>PAIN TTHE POWER</div>
+      <div>BLAZ ROBAR</div>
+    </div>
+    <div class="right-side">
+      <h1 class="title">PAINT <span> YOUR </span> PIXTURE</h1>
+      <div class="content">
+        <div class="description">
+          <div class="des-title">Humble Beginings</div>
+          <p class="des-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna 
+            aliqua. </p>
+        </div>
+        <div class="three-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="date">
+          <div class="arrow right"></div>
+          <div>April 19th, 2016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="carousel-section">
+    <div class="carousel-title hide">PICTURES WORTH SEEING</div>
+    <img src="assets/images/first-carousel-bg.png" class="background">
+    <div class="list-card">
+    </div>
+    <a class="control prev hide" onclick="moveLeft(0)">❮</a>
+    <a class="control next hide" onclick="moveRight(0)">❯</a>
+  </section>
+  <section class="passion-section">
+    <div class="left-side">
+      <div class="arrow down"></div>
+      <div>PAIN TTHE POWER</div>
+      <div>BLAZ ROBAR</div>
+    </div>
+    <div class="right-side">
+      <h1 class="title">IT'S YOUR <span> only </span> PASSION</h1>
+      <div class="content">
+        <div class="description">
+          <div class="des-title">Texture makes art</div>
+          <p class="des-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna 
+            aliqua. </p>
+        </div>
+        <div class="three-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="date">
+          <div class="arrow right"></div>
+          <div>April 19th, 2016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="article-section">
+    <div class="container">
+      <div class="left-side">
+        <div><span>24TH</span> JANUARY 2016</div>
+      </div>
+      <div class="right-side">
+        <div class="column-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+            <br />
+            <br />
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo. homes →
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <img src="assets/images/first-carousel-bg.png" class="background hide">
+  </section>
+  <section class="carousel-section second-carousel hide">
+    <div class="carousel-title hide">ARTICLES WORTH READING</div>
+    <div class="list-card">
+    </div>
+    <a class="control prev hide" onclick="moveLeft(1)">❮</a>
+    <a class="control next hide" onclick="moveRight(1)">❯</a>
+  </section>
+  <section class="keywords-section">
+    <div class="left-side">
+      <div><span>24TH</span> JANUARY 2016</div>
+    </div>
+    <div class="right-side">
+      <div class="column-content">
+        <div class="keywords-item">
+          <div class="keyword">Start-Up Resources</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+          </p>
+        </div>
+        <div class="keywords-item">
+          <div class="keyword">Training & Funding</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+          </p>
+        </div>
+      </div>
+      <div class="column-content">
+        <div class="keywords-item">
+          <div class="keyword">Connect</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+          </p>
+        </div>
+        <div class="keywords-item">
+          <div class="keyword">Communicate</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="credit-section">
+    <div class="credit-content">
+      <div>TEXTURES BY</div>
+      <div>Jordan Hetzer</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+        eiusmod tempor incididunt ut labore.</p>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="about">
+        <div class="name">ABOUT</div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        </p>
+      </div>
+      <div class="history">
+        <div class="name">HISTORY</div>
+        <div class="links">
+          <a href="#">Resources</a>
+          <a href="#">Downloads & Updates</a>
+          <a href="#">Manuals</a>
+          <a href="#">Tech Specs</a>
+          <a href="#">System Status</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="contact hide">
+        <div class="name">CONTACT</div>
+        <div>Apple Store (Education Institutions)</div>
+        <div>1300-551-927</div>
+        <div>Apple Store (Small Business)</div>
+        <div>1300-369-095</div>
+      </div>
+    </div>
+    <div class="end">
+      <p class="endline">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+        do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
