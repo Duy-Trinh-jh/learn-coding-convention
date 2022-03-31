@@ -15,7 +15,7 @@ const fillBgColorHeader = () => {
 const header = document.querySelector("header");
 window.addEventListener("scroll", fillBgColorHeader);
 
-const carouselArray = [ 
+const carouselArrayData = [ 
   [
     {
       imgHeader: "assets/images/carousel-1/image-1.jpg",
@@ -148,7 +148,7 @@ const MAX_CARD_WIDTH = 320;
 const CARD_PADDING = 24;
 const DISTANCE_OF_FINGER_MOVE = 20;
 
-function buildCarousel () {
+function buildCarousel (carouselArray) {
   const listCardContainer = document.querySelectorAll(".list-card");
   const container = document.querySelector(".carousel-section");
   const carouselContainer = document.querySelectorAll(".carousel-section");
@@ -288,7 +288,7 @@ function buildCarousel () {
   }
 } 
 
-const carousel = buildCarousel();
+const carousel = buildCarousel(carouselArrayData);
 carousel.createCarousel();
 carousel.setupCarousel();
 // handle touch event for carousel
